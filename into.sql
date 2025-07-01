@@ -16,7 +16,8 @@ INSERT INTO Executor (name) VALUES
 ('Pixies');
 
 INSERT INTO Executor (name) VALUES
-('kizaru');
+('kizaru'),
+('Bazzi');
 
 -- Заполнение таблицы Album 
 INSERT INTO Album (name, year_release) VALUES
@@ -28,7 +29,8 @@ INSERT INTO Album (name, year_release) VALUES
 ('Surfer Rosa', 1988);
 
 INSERT INTO Album (name, year_release) VALUES
-('Carmageddon', 2019)
+('Carmageddon', 2019),
+('COSMIC', 2018);
 
 -- Заполнение таблицы Genre_Executor (связи исполнителей с жанрами)
 INSERT INTO Genre_Executor (genreID, executorID) VALUES
@@ -39,10 +41,11 @@ INSERT INTO Genre_Executor (genreID, executorID) VALUES
 (5, 5),  -- Daft Punk - Electronic
 (2, 1),  -- The Beatles - Pop 
 (1, 3),  -- Eminem - Rock (кроссовер жанров)
-(1, 6),
+(1, 6);
 
 INSERT INTO Genre_Executor (genreID, executorID) VALUES
-(3, 7);
+(3, 7),
+(2, 8);
 
 -- Заполнение таблицы Album_Executor (связи исполнителей с альбомами)
 INSERT INTO Album_Executor (albumID, executorID) VALUES
@@ -55,7 +58,8 @@ INSERT INTO Album_Executor (albumID, executorID) VALUES
 (6, 6);
 
 INSERT INTO Album_Executor (albumID, executorID) VALUES
-(7, 7)
+(7, 7),
+(8, 8);
 -- Заполнение таблицы Track 
 INSERT INTO Track (name, duration, albumID) VALUES
 ('Come Together', '00:04:20', 1),
@@ -70,10 +74,12 @@ INSERT INTO Track (name, duration, albumID) VALUES
 ('Instant Crush', '00:05:37', 5),
 ('Something', '00:03:02', 1),
 ('Borderline', '00:03:57', 2),
-('Where Is My Mind?', '00:03:55', 6);
+('Where Is my Mind?', '00:03:55', 6);
 
 INSERT INTO Track (name, duration, albumID) VALUES
-('Дежавю', '00:02:54', 7);
+('Дежавю', '00:02:54', 7),
+('myself', '00:02:47', 8),
+('bemy self', '00:02:54', 7);
 
 -- Заполнение таблицы Collection 
 INSERT INTO Collection (name, release_year) VALUES

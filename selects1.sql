@@ -12,5 +12,4 @@ select name from Executor
 where name not like '% %';
 
 select name from Track t
-where name like '%My%' or name like '%мой%';
-
+WHERE name ~* '\y(my|мой)\y';

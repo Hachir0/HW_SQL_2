@@ -13,13 +13,19 @@ FROM Track t
 JOIN Album a ON t.albumID = a.albumID
 GROUP BY a.name;
 
-with T as (
-	select e.name from Album a
-	join Album_Executor ae on a.albumID = ae.albumID
-	join Executor e on e.executorID = ae.executorID
-	where year_release < 2020 or year_release > 2020 
+SELECT 
+    e.name AS executor_name
+FROM Executor e
+WHERE e.executorID NOT IN (
+    SELECT DISTINCT ae.executorID
+    FROM Album_Executor ae
+    JOIN Album a ON ae.albumID = a.albumID
+    WHERE a.year_release = 2020
 )
-select count(*) from T;
+AND e.executorID IN (
+    SELECT DISTINCT executorID
+    FROM Album_Executor
+);
 
 select DISTINCT c.name from Collection c
 join collection_track ct on c.collectionid = ct.collectionid
