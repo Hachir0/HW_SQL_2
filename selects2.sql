@@ -13,18 +13,17 @@ FROM Track t
 JOIN Album a ON t.albumID = a.albumID
 GROUP BY a.name;
 
-SELECT 
-    e.name AS executor_name
-FROM Executor e
-WHERE e.executorID NOT IN (
-    SELECT DISTINCT ae.executorID
-    FROM Album_Executor ae
-    JOIN Album a ON ae.albumID = a.albumID
-    WHERE a.year_release = 2020
+select 
+    e.name as executor_name
+from Executor e
+where e.executorID not in (
+    select DISTINCT ae.executorID from Album_Executor ae
+    join Album a on ae.albumID = a.albumID
+    where a.year_release = 2020
 )
-AND e.executorID IN (
-    SELECT DISTINCT executorID
-    FROM Album_Executor
+and e.executorID in (
+    select DISTINCT executorID
+    from Album_Executor
 );
 
 select DISTINCT c.name from Collection c
@@ -34,13 +33,3 @@ join album a on a.albumid = t.albumid
 join album_executor ae on ae.albumid = a.albumid
 join executor e on e.executorid = ae.executorid
 where e.name = 'Eminem';
-
-SELECT 
-    e.name AS executor_name,
-    COUNT(DISTINCT a.albumID) AS album_count 
-FROM Executor e
-JOIN Album_Executor ae ON e.executorID = ae.executorID
-JOIN Album a ON ae.albumID = a.albumID
-WHERE a.year_release <> 2020 
-GROUP BY e.name
-ORDER BY album_count DESC;
