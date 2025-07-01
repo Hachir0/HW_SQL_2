@@ -1,18 +1,29 @@
+with AEGCount as (
+    select 
+        a.albumID,
+        a.name as album_name,
+        e.executorID,
+        e.name as executor_name,
+        COUNT(g.genreID) as genre_count
+    from Album a
+    join Album_Executor ae on a.albumID = ae.albumID
+    join Executor e on ae.executorID = e.executorID
+    join Genre_Executor ge on e.executorID = ge.executorID
+    join Genre g on ge.genreID = g.genreID
+    group by a.albumID, a.name, e.executorID, e.name
+)
+select 
+    album_name,
+    executor_name,
+    genre_count
+from AEGCount
+where genre_count > 1
+order by album_name, executor_name;
 
-select a.name, count(g.name) c from album a
-join album_executor ae on ae.albumid = a.albumid
-join executor e on e.executorid = ae.executorid
-join genre_executor ge on ge.executorid = e.executorid 
-join genre g on g.genreid = ge.genreid
-group by a.name
-having count(g.name) > 1; 
 
-
-select t.name ,count(c.collectionid) from track t
+select t.name from track t
 left join collection_track ct on ct.trackid = t.trackid
-left join collection c on c.collectionid = ct.collectionid
-group by t.name
-having count(c.collectionid) = 0;
+where ct.trackid is null;
 
 
 with ShortestTracks as (

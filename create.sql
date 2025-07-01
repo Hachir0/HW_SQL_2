@@ -30,7 +30,7 @@ create table if not exists Album_Executor (
 create table if not exists Track (
 	trackID serial primary key,
 	name varchar (40) not null,
-	duration T (40) not null,
+	duration interval (40) not null,
 	albumID integer references Album(albumID)
 );
 

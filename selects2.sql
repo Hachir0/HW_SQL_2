@@ -21,10 +21,6 @@ where e.executorID not in (
     join Album a on ae.albumID = a.albumID
     where a.year_release = 2020
 )
-and e.executorID in (
-    select DISTINCT executorID
-    from Album_Executor
-);
 
 select DISTINCT c.name from Collection c
 join collection_track ct on c.collectionid = ct.collectionid
